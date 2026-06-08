@@ -1,43 +1,36 @@
 version: 2
 
 models:
-  - name: customers
-    description: One record per customer
+  - name: stg_flights
     columns:
-      - name: customer_id
-        description: Primary key
-        data_tests:
-          - unique
-          - not_null
-      - name: first_order_date
-        description: NULL when a customer has not yet placed an order.
-
-  - name: stg_customers
-    description: This model cleans up customer data
-    columns:
-      - name: customer_id
-        description: Primary key
-        data_tests:
-          - unique
+      - name: icao24
+        tests:
           - not_null
 
-  - name: stg_orders
-    description: This model cleans up order data
+  - name: stg_tourism
     columns:
-      - name: order_id
-        description: Primary key
-        data_tests:
-          - unique
+      - name: country_code
+        tests:
           - not_null
-      - name: status
-        data_tests:
-          - accepted_values:
-              arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
-                values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
-      - name: customer_id
-        data_tests:
+
+      - name: year
+        tests:
           - not_null
-          - relationships:
-              arguments:
-                to: ref('stg_customers')
-                field: customer_id
+
+  - name: latest_tourism
+    columns:
+      - name: country_code
+        tests:
+          - not_null
+
+  - name: flight_activity_by_country
+    columns:
+      - name: origin_country
+        tests:
+          - not_null
+
+  - name: travel_demand_analysis
+    columns:
+      - name: country_code
+        tests:
+          - not_null

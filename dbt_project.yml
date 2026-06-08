@@ -37,6 +37,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   shop:
-    # Applies to all files under models/example/
     +materialized: table
-    
+    +schema: analytics_data 
