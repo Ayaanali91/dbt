@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: air-traffic-analysis-498213
+    schema: raw_data
+
+    tables:
+      - name: raw_flights
+      - name: raw_tourism
